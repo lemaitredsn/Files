@@ -1,0 +1,64 @@
+
+val file = File(тут должен быть каталог)
+            File("/User/myalkin/Desktop/filename.txt") Unix системы
+            File("C\\Users\\myalkin\\Desktop\\filename.txt") Windows
+             эти запись не создает файл и не открывает если он существует
+
+Проверить существует ли файл
+if(file.exists()){
+    val result = file.createNewFile() - false если файл уже был создан создать повторно неполучилось,
+    true файла раньше не было и он создан
+            println("file length =${file.length()}") - размер
+            println("file length =${file.absolutePath}") - путь
+            println("file length =${file.name}") - имия
+}else{
+    file.delete() - удалить файл
+}
+
+//internal
+
+context.gqtCacheDir():File  директория для времпенных файлов приложения
+context.getFilesDir(): File директория для постоянных файлов приложения
+
+val cacheDir = requireContext().cacheDir
+val cacheFile = File(cacheDir, "test_cache.txt")
+try{
+    cachceFile.outputStream().buffered().use{
+    it.write("Content in cachefile".toByteArray())
+    }
+}catch(t:throwable){
+
+}
+работу с файлами необходимо выносить в фоновый поток
+для того чтобы не забыть про какието выполняющиес в главном потоке работы
+можно использовать класс application добавить его в манифест
+if(BuildConfig.DEBUG){
+    Strict.setThreadPolicy(StrictMode.ThreadPolicy.Builder) запрещаем:
+        .detectDiskReads()  чтоение на диск
+        .detectDiskWrites запись на диск
+        .detectNetwork() работа с интернетом
+        .penaltyDeath() скрэшить апп при выявлении вышеперечисленного
+        .build()
+}
+
+val filesDir = requireContext().filesDir
+val file = File(filesDir, "test_cache.txt")
+try{
+    file.outputStream().buffered().use{
+    it.write("Content in cachefile".toByteArray())
+    }
+}catch(t:throwable){
+
+}
+//external
+context.externalCacheDir():File  директория для времпенных файлов приложения
+context.getExternalFilesDir(): File директория для постоянных файлов приложения
+при работе с экстернал необходимо проверить состояние MEDAI_MOUNTED говорит что с памятью можно работать
+
+
+<string name="crime_report_suspect">the suspect is %s.</string>
+var suspect = getString(R.string.crime_report_suspect, suspect)
+
+
+
+//sharedPreference

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">FileLesson</string>
+    <string name="enter_link">enter link</string>
+    <string name="download">download</string>
+    <string name="success_download">Файл %s успешно загружен</string>
+    <string name="hint_edit_text">Введите ссылку</string>
+    <string name="file_exists">Файл уже существует!</string>
+    <string name="fail_load">Ошибка при загрузке, файл удален</string>
+</resources>
